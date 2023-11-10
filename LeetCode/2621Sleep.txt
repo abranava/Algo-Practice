@@ -1,0 +1,62 @@
+Link: https://leetcode.com/problems/sleep/
+
+Given a positive integer millis, write an asynchronous function that sleeps for millis milliseconds. It can resolve any value.
+
+ 
+
+Example 1:
+
+Input: millis = 100
+Output: 100
+Explanation: It should return a promise that resolves after 100ms.
+let t = Date.now();
+sleep(100).then(() => {
+  console.log(Date.now() - t); // 100
+});
+Example 2:
+
+Input: millis = 200
+Output: 200
+Explanation: It should return a promise that resolves after 200ms.
+ 
+
+Constraints:
+
+1 <= millis <= 1000
+
+Provided Code:
+/**
+ * @param {number} millis
+ * @return {Promise}
+ */
+async function sleep(millis) {
+    
+}
+
+/** 
+ * let t = Date.now()
+ * sleep(100).then(() => console.log(Date.now() - t)) // 100
+ */
+
+Solution:
+/**
+ * Sleeps for the specified number of milliseconds.
+ * @param {number} millis - The number of milliseconds to sleep.
+ * @return {Promise} - A promise that resolves after the specified duration.
+ */
+async function sleep(millis) {
+    return new Promise(resolve => setTimeout(resolve, millis, millis));
+}
+
+// Example usage
+let t = Date.now();
+sleep(100).then((elapsedTime) => {
+    console.log(Date.now() - t); // Approximately 100
+    console.log('Elapsed time:', elapsedTime); // 100
+});
+
+Explanation:
+The sleep function takes millis as an input parameter.Inside the function, a new Promise is returned.
+The executor function of this Promise uses setTimeout.
+setTimeout is set to invoke the resolve function after millis milliseconds. 
+We pass millis as the third argument to setTimeout, which will be the value with which the promise resolves.
